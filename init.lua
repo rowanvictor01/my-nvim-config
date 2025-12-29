@@ -74,7 +74,13 @@ require("lazy").setup({
   -- LSP
   {
 	  "neovim/nvim-lspconfig",
-	  vim.lsp.enable("clangd", "lua_ls", "pylsp"),
+	  vim.lsp.enable("clangd"),
+	  vim.lsp.enable("lua_ls"),
+	  vim.lsp.enable("pyright"),
+	  vim.lsp.enable("ts_ls"),
+	  vim.lsp.enable("vue_ls"),
+	  vim.lsp.enable("svelte"),
+	  vim.lsp.enable("tailwindcss"),
   },
 
 
