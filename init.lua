@@ -71,6 +71,13 @@ require("lazy").setup({
   },
 
 
+  -- LSP
+  {
+	  "neovim/nvim-lspconfig",
+	  vim.lsp.enable("clangd", "lua_ls", "pylsp"),
+  },
+
+
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
