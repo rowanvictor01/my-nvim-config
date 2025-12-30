@@ -12,6 +12,10 @@ vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>")
 vim.opt.termguicolors = true
 vim.opt.mouse = "a"
 
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 -- Clipboard (delay to avoid startup issues)
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
@@ -70,6 +74,14 @@ require("lazy").setup({
     end
   },
 
+  {
+      'nvim-mini/mini.nvim', version = false,
+      config = function()
+          require("mini.files").setup()
+      end,
+      vim.keymap.set("n", "<leader>mf", "<cmd>lua MiniFiles.open()<CR>"),
+      vim.keymap.set("n", "<Esc>", "<cmd>lua MiniFiles.close()<CR>"),
+  },
 
   -- LSP
   {
