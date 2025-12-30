@@ -75,12 +75,12 @@ require("lazy").setup({
   },
 
   {
-      'nvim-mini/mini.nvim', version = false,
-      config = function()
-          require("mini.files").setup()
-      end,
-      vim.keymap.set("n", "<leader>mf", "<cmd>lua MiniFiles.open()<CR>"),
-      vim.keymap.set("n", "<Esc>", "<cmd>lua MiniFiles.close()<CR>"),
+	  'nvim-mini/mini.nvim', version = false,
+	  config = function()
+		  require("mini.files").setup()
+          require("mini.cursorword").setup()
+	  end,
+	  vim.keymap.set("n", "<leader>mf", "<cmd>lua MiniFiles.open()<CR>")
   },
 
   -- LSP
