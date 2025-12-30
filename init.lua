@@ -70,10 +70,57 @@ require("lazy").setup({
       require("onedark").setup {
 	      style = "darker"
       }
-      require("onedark").load()
+      --require("onedark").load()
     end
   },
 
+  {
+      "ellisonleao/gruvbox.nvim",
+      priority = 1000,
+      config = true,
+      opts = ...,
+  },
+
+  {
+      "folke/tokyonight.nvim",
+      priority = 1000,
+  },
+
+  -- Harpoon
+  {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      dependencies = {"nvim-lua/plenary.nvim"},
+
+      config = function()
+          local harpoon = require("harpoon")
+          harpoon:setup()
+
+          -- Add file
+          vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, {desc = "Harpoon add current buffer"})
+
+          -- Toggle Menu
+          vim.keymap.set("n", "<leader>hl", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+          -- File Navigation
+          vim.keymap.set("n", "<leader>h1", function() harpoon:list():select(1) end)
+          vim.keymap.set("n", "<leader>h2", function() harpoon:list():select(2) end)
+          vim.keymap.set("n", "<leader>h3", function() harpoon:list():select(3) end)
+          vim.keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end)
+
+          -- Toggle previous & next buffers stored within Harpoon list
+          vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end)
+          vim.keymap.set("n", "<leader>hn", function() harpoon:list():next() end)
+
+          -- Remove current buffer from Harpoon list
+          vim.keymap.set("n", "<leader>hr", function() harpoon:list():remove() end, {desc = "Harpoon remove current buffer"})
+
+          -- Clear Harpoon list
+          vim.keymap.set("n", "<leader>hc", function() harpoon:list():clear() end)
+      end
+  },
+
+  -- Mini.nvim
   {
 	  'nvim-mini/mini.nvim', version = false,
 	  config = function()
@@ -143,5 +190,7 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
---vim.cmd.colorscheme("catppuccin-mocha")
+vim.o.background = "dark"
+--vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("gruvbox")
 
