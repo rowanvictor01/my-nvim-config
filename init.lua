@@ -122,11 +122,39 @@ require("lazy").setup({
 
   -- Mini.nvim
   {
-	  'nvim-mini/mini.nvim', version = false,
-	  config = function()
-		  require("mini.files").setup()
-          require("mini.cursorword").setup()
-	  end,
+  "nvim-mini/mini.nvim",
+  version = false,
+  config = function()
+    local mf = require("mini.files")
+
+    mf.setup()
+    require("mini.cursorword").setup()
+
+    -- Toggle MiniFiles
+    vim.keymap.set("n", "<leader>mf", function()
+      if mf.get_explorer_state() then
+        mf.close()
+      else
+        mf.open()
+      end
+    end, { desc = "Toggle MiniFiles" })
+
+    -- Close MiniFiles with <Esc>
+    local function map_esc(buf)
+      if not buf then return end
+      vim.keymap.set("n", "<Esc>", function()
+        mf.close()
+      end, { buffer = buf, silent = true })
+    end
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = { "MiniFilesExplorerOpen", "MiniFilesBufferCreate" },
+      callback = function(args)
+        local buf = args.buf or (args.data and args.data.buf_id)
+        map_esc(buf)
+      end,
+    })
+  end,
 	  vim.keymap.set("n", "<leader>mf", "<cmd>lua MiniFiles.open()<CR>")
   },
 
