@@ -6,11 +6,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>")
 
 vim.opt.termguicolors = true
 vim.opt.mouse = "a"
+vim.opt.showmode = false
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -212,6 +212,13 @@ require("lazy").setup({
         },
       })
     end,
+  },
+
+  {
+      "windwp/nvim-autopairs",
+      event = "InsertEnter",
+      config = true,
+      opts = {}
   },
 
 }, {
