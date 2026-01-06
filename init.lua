@@ -64,6 +64,12 @@ require("lazy").setup({
 
   -- Colorscheme (load first)
   {
+      "catppuccin/nvim",
+      name = "catppuccin",
+      priority = 1000
+  },
+
+  {
     "navarasu/onedark.nvim",
     priority = 1000,
     config = function()
@@ -107,6 +113,7 @@ require("lazy").setup({
           vim.keymap.set("n", "<leader>h2", function() harpoon:list():select(2) end)
           vim.keymap.set("n", "<leader>h3", function() harpoon:list():select(3) end)
           vim.keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end)
+          vim.keymap.set("n", "<leader>h5", function() harpoon:list():select(5) end)
 
           -- Toggle previous & next buffers stored within Harpoon list
           vim.keymap.set("n", "<leader>hp", function() harpoon:list():prev() end)
@@ -225,7 +232,8 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
-vim.o.background = "dark"
+--vim.o.background = "dark"
+vim.cmd.colorscheme("catppuccin-mocha")
 --vim.cmd.colorscheme("tokyonight-night")
-vim.cmd.colorscheme("gruvbox")
+--vim.cmd.colorscheme("gruvbox")
 
