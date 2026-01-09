@@ -16,7 +16,8 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
-vim.opt.termguicolors = true
+vim.opt.guicursor = ""  -- Resets Neovim's cursor settings
+vim.opt.termguicolors = false  -- Set to true so Neovim doesn't adapt termninal's colorscheme on default theme
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 
@@ -265,7 +266,7 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
---vim.o.background = "dark"
+vim.o.background = "dark"
 vim.cmd.colorscheme("torte")
 --vim.cmd.colorscheme("catppuccin-mocha")
 --vim.cmd.colorscheme("tokyonight-night")
