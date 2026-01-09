@@ -8,6 +8,14 @@ vim.g.maplocalleader = "\\"
 
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>")
 
+-- Split Window mapping
+vim.keymap.set("n", "<leader>sv", "<C-w>v <C-w>l")
+vim.keymap.set("n", "<leader>sq", "<C-w>q")
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+
 vim.opt.termguicolors = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
@@ -54,6 +62,7 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.keymap.set("n", "<leader>L", "<cmd>:Lazy<CR>")
 
 -----------------------
 -- PLUGINS
@@ -70,17 +79,6 @@ require("lazy").setup({
   },
 
   {
-    "navarasu/onedark.nvim",
-    priority = 1000,
-    config = function()
-      require("onedark").setup {
-	      style = "darker"
-      }
-      --require("onedark").load()
-    end
-  },
-
-  {
       "ellisonleao/gruvbox.nvim",
       priority = 1000,
       config = true,
@@ -90,6 +88,40 @@ require("lazy").setup({
   {
       "folke/tokyonight.nvim",
       priority = 1000,
+  },
+
+  -- Inlay Hints
+  {
+      "MysticalDevil/inlay-hints.nvim",
+      event = "LspAttach",
+      dependencies = {"neovim/nvim-lspconfig"},
+      config = function()
+          require("inlay-hints").setup()
+      end,
+  },
+
+  -- LSP Signature
+  {
+      "ray-x/lsp_signature.nvim",
+      event = "InsertEnter",
+      opts = {
+          -- cfg options
+      },
+      config = function()
+          require "lsp_signature".setup()
+      end
+  },
+
+  -- Nvim Cmp
+  {
+      "hrsh7th/nvim-cmp",
+      version = false,
+      event = "InsertEnter",
+      dependencies = {
+          "hrsh7th/cmp-nvim-lsp",
+          "hrsh7th/cmp-buffer",
+          "hrsh7th/cmp-path",
+      }
   },
 
   -- Harpoon
@@ -187,6 +219,7 @@ require("lazy").setup({
         options = {
           icons_enabled = true,
           theme = "powerline_dark",
+          --theme = "catppuccin",
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           globalstatus = false,
@@ -233,7 +266,8 @@ require("lazy").setup({
 })
 
 --vim.o.background = "dark"
-vim.cmd.colorscheme("catppuccin-mocha")
+vim.cmd.colorscheme("torte")
+--vim.cmd.colorscheme("catppuccin-mocha")
 --vim.cmd.colorscheme("tokyonight-night")
 --vim.cmd.colorscheme("gruvbox")
 
