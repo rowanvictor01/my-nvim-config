@@ -10,6 +10,7 @@ vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>")
 
 -- Split Window mapping
 vim.keymap.set("n", "<leader>sv", "<C-w>v <C-w>l")
+vim.keymap.set("n", "<leader>sh", "<cmd>split<CR> <C-w>j")
 vim.keymap.set("n", "<leader>sq", "<C-w>q")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
@@ -267,8 +268,8 @@ require("lazy").setup({
 })
 
 vim.o.background = "dark"
-vim.cmd.colorscheme("torte")
+--vim.cmd.colorscheme("torte")
 --vim.cmd.colorscheme("catppuccin-mocha")
 --vim.cmd.colorscheme("tokyonight-night")
---vim.cmd.colorscheme("gruvbox")
+vim.cmd.colorscheme("gruvbox")
 
